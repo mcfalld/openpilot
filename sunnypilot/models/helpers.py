@@ -19,7 +19,11 @@ from openpilot.system.hardware import PC
 from openpilot.system.hardware.hw import Paths
 from pathlib import Path
 
+<<<<<<< HEAD
 CURRENT_SELECTOR_VERSION = 6
+=======
+CURRENT_SELECTOR_VERSION = 7
+>>>>>>> sunnypilot/dev-c3-new
 REQUIRED_MIN_SELECTOR_VERSION = 5
 
 USE_ONNX = os.getenv('USE_ONNX', PC)

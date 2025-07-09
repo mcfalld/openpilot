@@ -57,6 +57,10 @@ def manager_init() -> None:
     ("DynamicExperimentalControl", "0"),
     ("HyundaiLongitudinalTuning", "0"),
     ("LagdToggle", "1"),
+<<<<<<< HEAD
+=======
+    ("LagdToggledelay", "0.2"),
+>>>>>>> sunnypilot/dev-c3-new
     ("Mads", "1"),
     ("MadsMainCruiseAllowed", "1"),
     ("MadsSteeringMode", "0"),

@@ -187,7 +187,11 @@ class Controls(ControlsExt):
       CO = self.sm['carOutput']
       if self.CP.steerControlType == car.CarParams.SteerControlType.angle:
         self.steer_limited_by_controls = abs(CC.actuators.steeringAngleDeg - CO.actuatorsOutput.steeringAngleDeg) > \
+<<<<<<< HEAD
                                          STEER_ANGLE_SATURATION_THRESHOLD
+=======
+                                              STEER_ANGLE_SATURATION_THRESHOLD
+>>>>>>> sunnypilot/dev-c3-new
       else:
         self.steer_limited_by_controls = abs(CC.actuators.torque - CO.actuatorsOutput.torque) > 1e-2
 

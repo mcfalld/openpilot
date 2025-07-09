@@ -398,7 +398,11 @@ struct CarControlSP {
   struct Param;
 
   struct _capnpPrivate {
+<<<<<<< HEAD
     CAPNP_DECLARE_STRUCT_HEADER(a5cd762cd951a455, 2, 2)
+=======
+    CAPNP_DECLARE_STRUCT_HEADER(a5cd762cd951a455, 0, 2)
+>>>>>>> sunnypilot/dev-c3-new
     #if !CAPNP_LITE
     static constexpr ::capnp::_::RawBrandedSchema const* brand() { return &schema->defaultBrand; }
     #endif  // !CAPNP_LITE
@@ -2253,12 +2257,15 @@ public:
   inline bool hasMads() const;
   inline  ::cereal::ModularAssistiveDrivingSystem::Reader getMads() const;
 
+<<<<<<< HEAD
   inline float getLeadDistance() const;
 
   inline float getLeadRelSpeed() const;
 
   inline bool getLeadVisible() const;
 
+=======
+>>>>>>> sunnypilot/dev-c3-new
   inline bool hasParams() const;
   inline  ::capnp::List< ::cereal::CarControlSP::Param,  ::capnp::Kind::STRUCT>::Reader getParams() const;
 
@@ -2297,6 +2304,7 @@ public:
   inline void adoptMads(::capnp::Orphan< ::cereal::ModularAssistiveDrivingSystem>&& value);
   inline ::capnp::Orphan< ::cereal::ModularAssistiveDrivingSystem> disownMads();
 
+<<<<<<< HEAD
   inline float getLeadDistance();
   inline void setLeadDistance(float value);
 
@@ -2306,6 +2314,8 @@ public:
   inline bool getLeadVisible();
   inline void setLeadVisible(bool value);
 
+=======
+>>>>>>> sunnypilot/dev-c3-new
   inline bool hasParams();
   inline  ::capnp::List< ::cereal::CarControlSP::Param,  ::capnp::Kind::STRUCT>::Builder getParams();
   inline void setParams( ::capnp::List< ::cereal::CarControlSP::Param,  ::capnp::Kind::STRUCT>::Reader value);
@@ -5231,6 +5241,7 @@ inline ::capnp::Orphan< ::cereal::ModularAssistiveDrivingSystem> CarControlSP::B
       ::capnp::bounded<0>() * ::capnp::POINTERS));
 }
 
+<<<<<<< HEAD
 inline float CarControlSP::Reader::getLeadDistance() const {
   return _reader.getDataField<float>(
       ::capnp::bounded<0>() * ::capnp::ELEMENTS);
@@ -5273,6 +5284,8 @@ inline void CarControlSP::Builder::setLeadVisible(bool value) {
       ::capnp::bounded<64>() * ::capnp::ELEMENTS, value);
 }
 
+=======
+>>>>>>> sunnypilot/dev-c3-new
 inline bool CarControlSP::Reader::hasParams() const {
   return !_reader.getPointerField(
       ::capnp::bounded<1>() * ::capnp::POINTERS).isNull();

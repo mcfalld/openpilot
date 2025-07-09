@@ -26,7 +26,11 @@ class ControlsExt:
     self.CP_SP = messaging.log_from_bytes(params.get("CarParamsSP", block=True), custom.CarParamsSP)
     cloudlog.info("controlsd_ext got CarParamsSP")
 
+<<<<<<< HEAD
     self.sm_services_ext = ['radarState', 'selfdriveStateSP']
+=======
+    self.sm_services_ext = ['selfdriveStateSP']
+>>>>>>> sunnypilot/dev-c3-new
     self.pm_services_ext = ['carControlSP']
 
   def get_params_sp(self) -> None:
@@ -44,6 +48,7 @@ class ControlsExt:
     # MADS not available, use stock state to engage
     return bool(sm['selfdriveState'].active)
 
+<<<<<<< HEAD
   def _set_custom_lead_vehicle_state(self, CC_SP: custom.CarControlSP,  sm: messaging.SubMaster) -> None:
     """ Update the custom LeadVehicle state in CarControlSP. """
     CC_SP.leadDistance = 0.0
@@ -63,6 +68,11 @@ class ControlsExt:
     # Custom LeadVehicle state
     self._set_custom_lead_vehicle_state(CC_SP, sm)
 
+=======
+  def state_control_ext(self, sm: messaging.SubMaster) -> custom.CarControlSP:
+    CC_SP = custom.CarControlSP.new_message()
+
+>>>>>>> sunnypilot/dev-c3-new
     # MADS state
     CC_SP.mads = sm['selfdriveStateSP'].mads
 

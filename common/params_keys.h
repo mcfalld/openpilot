@@ -178,6 +178,11 @@ inline static std::unordered_map<std::string, uint32_t> keys = {
 
     // model panel params
     {"LagdToggle", PERSISTENT | BACKUP},
+<<<<<<< HEAD
+=======
+    {"LagdToggleDesc", PERSISTENT},
+    {"LagdToggledelay", PERSISTENT | BACKUP},
+>>>>>>> sunnypilot/dev-c3-new
 
     // mapd
     {"MapAdvisorySpeedLimit", CLEAR_ON_ONROAD_TRANSITION},
