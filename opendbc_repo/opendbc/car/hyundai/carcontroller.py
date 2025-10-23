@@ -64,14 +64,6 @@ class CarController(CarControllerBase, EsccCarController, LeadDataCarController,
     self.car_fingerprint = CP.carFingerprint
     self.last_button_frame = 0
 
-    # Debug: Export torque debug info to params for UI
-    from openpilot.common.params import Params
-    debug_params = Params()
-    debug_params.put("CarnivalDebugSteerMax", str(self.params.STEER_MAX))
-    debug_params.put("CarnivalDebugSafetyParam", str(CP.safetyConfigs[-1].safetyParam if CP.safetyConfigs else 0))
-    debug_params.put("CarnivalDebugCarName", str(CP.carFingerprint))
-    debug_params.put("CarnivalDebugCanFD", "1" if CP.flags & HyundaiFlags.CANFD else "0")
-
   def update(self, CC, CC_SP, CS, now_nanos):
     EsccCarController.update(self, CS)
     LeadDataCarController.update(self, CC_SP)
@@ -85,14 +77,6 @@ class CarController(CarControllerBase, EsccCarController, LeadDataCarController,
     # steering torque
     new_torque = int(round(actuators.torque * self.params.STEER_MAX))
     apply_torque = apply_driver_steer_torque_limits(new_torque, self.apply_torque_last, CS.out.steeringTorque, self.params)
-
-    # Debug: Export current torque values every 10 frames (~1Hz)
-    if self.frame % 10 == 0:
-      from openpilot.common.params import Params
-      debug_params = Params()
-      debug_params.put_nonblocking("CarnivalDebugActuatorTorque", f"{actuators.torque:.3f}")
-      debug_params.put_nonblocking("CarnivalDebugNewTorque", str(new_torque))
-      debug_params.put_nonblocking("CarnivalDebugApplyTorque", str(apply_torque))
 
     # >90 degree steering fault prevention
     self.angle_limit_counter, apply_steer_req = common_fault_avoidance(abs(CS.out.steeringAngleDeg) >= MAX_ANGLE, CC.latActive,
