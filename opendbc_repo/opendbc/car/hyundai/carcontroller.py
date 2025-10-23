@@ -64,6 +64,12 @@ class CarController(CarControllerBase, EsccCarController, LeadDataCarController,
     self.car_fingerprint = CP.carFingerprint
     self.last_button_frame = 0
 
+    # Simple debug: Write key info to params once at startup (no UI overlay)
+    from openpilot.common.params import Params
+    debug_params = Params()
+    debug_params.put_nonblocking("CarnivalSteerMax", str(self.params.STEER_MAX))
+    debug_params.put_nonblocking("CarnivalSafetyParam", str(CP.safetyConfigs[-1].safetyParam if CP.safetyConfigs else 0))
+
   def update(self, CC, CC_SP, CS, now_nanos):
     EsccCarController.update(self, CS)
     LeadDataCarController.update(self, CC_SP)
