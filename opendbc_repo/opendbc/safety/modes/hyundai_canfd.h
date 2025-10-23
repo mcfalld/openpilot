@@ -153,12 +153,12 @@ static bool hyundai_canfd_tx_hook(const CANPacket_t *msg) {
 
     if (hyundai_canfd_carnival_steering_limits) {
       violation = steer_torque_cmd_checks(desired_torque, steer_req, (TorqueSteeringLimits){
-        .max_torque = 500,  // Dramatically higher to test if flag is working
-        .max_rt_delta = 150,
-        .max_rate_up = 5,
-        .max_rate_down = 6,
-        .driver_torque_allowance = 350,
-        .driver_torque_multiplier = 3,
+        .max_torque = 360,
+        .max_rt_delta = 130,
+        .max_rate_up = 3,
+        .max_rate_down = 4,
+        .driver_torque_allowance = 280,
+        .driver_torque_multiplier = 2,
         .type = TorqueDriverLimited,
 
         // the EPS faults when the steering angle is above a certain threshold for too long. to prevent this,

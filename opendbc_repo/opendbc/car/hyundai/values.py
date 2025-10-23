@@ -30,7 +30,7 @@ class CarControllerParams:
       # Default CAN-FD steer max. For Carnival we allow a higher controller limit so
       # that the actuator can make use of the safety limits set in the CAN-FD safety code.
       if CP.carFingerprint == CAR.KIA_CARNIVAL_4TH_GEN:
-        self.STEER_MAX = 500
+        self.STEER_MAX = 360
       else:
         self.STEER_MAX = 270
       self.STEER_DRIVER_ALLOWANCE = 250
