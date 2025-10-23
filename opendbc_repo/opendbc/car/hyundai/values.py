@@ -37,7 +37,8 @@ class CarControllerParams:
       # For Carnival we allow a higher controller limit so that the actuator
       # can make use of the safety limits set in the CAN-FD safety code.
       if CP.carFingerprint == CAR.KIA_CARNIVAL_4TH_GEN:
-        self.STEER_MAX = 360
+        # self.STEER_MAX = 360  # Temporarily disabled
+        pass
 
     # To determine the limit for your car, find the maximum value that the stock LKAS will request.
     # If the max stock LKAS request is <384, add your car to this list.
