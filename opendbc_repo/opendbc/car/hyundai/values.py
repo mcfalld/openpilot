@@ -26,6 +26,14 @@ class CarControllerParams:
     self.STEER_THRESHOLD = 150
     self.STEER_STEP = 1  # 100 Hz
 
+    # Log key information for debugging
+    from openpilot.common.params import Params
+    debug_params = Params()
+    debug_params.put_nonblocking("CarnivalParamsCarFingerprint", str(CP.carFingerprint))
+    debug_params.put_nonblocking("CarnivalParamsFlags", str(CP.flags))
+    debug_params.put_nonblocking("CarnivalParamsIsCanFD", str(bool(CP.flags & HyundaiFlags.CANFD)))
+    debug_params.put_nonblocking("CarnivalParamsIsCarnival", str(CP.carFingerprint == CAR.KIA_CARNIVAL_4TH_GEN))
+
     if CP.flags & HyundaiFlags.CANFD:
       self.STEER_MAX = 270  # Default CAN-FD steer max
       self.STEER_DRIVER_ALLOWANCE = 250
@@ -34,11 +42,14 @@ class CarControllerParams:
       self.STEER_DELTA_UP = 3
       self.STEER_DELTA_DOWN = 4
 
+      debug_params.put_nonblocking("CarnivalParamsDefaultSteerMax", str(self.STEER_MAX))
+
       # For Carnival we allow a higher controller limit so that the actuator
       # can make use of the safety limits set in the CAN-FD safety code.
       if CP.carFingerprint == CAR.KIA_CARNIVAL_4TH_GEN:
-        # self.STEER_MAX = 360  # Temporarily disabled
-        pass
+        self.STEER_MAX = 360  # 33% increase from 270 to 360 for better steering
+        debug_params.put_nonblocking("CarnivalParamsModificationApplied", "True - STEER_MAX=360")
+        debug_params.put_nonblocking("CarnivalParamsFinalSteerMax", str(self.STEER_MAX))
 
     # To determine the limit for your car, find the maximum value that the stock LKAS will request.
     # If the max stock LKAS request is <384, add your car to this list.
