@@ -55,6 +55,49 @@ class AugmentedRoadView(CameraView):
   def set_callbacks(self, on_click: Callable | None = None):
     self._click_callback = on_click
 
+  def _render_carnival_debug_overlay(self):
+    """Display Carnival torque debug info on screen"""
+    try:
+      from openpilot.common.params import Params
+      params = Params()
+
+      # Get debug values
+      steer_max = params.get("CarnivalDebugSteerMax", encoding="utf8") or "N/A"
+      safety_param = params.get("CarnivalDebugSafetyParam", encoding="utf8") or "N/A"
+      car_name = params.get("CarnivalDebugCarName", encoding="utf8") or "N/A"
+      canfd = params.get("CarnivalDebugCanFD", encoding="utf8") or "N/A"
+      actuator_torque = params.get("CarnivalDebugActuatorTorque", encoding="utf8") or "N/A"
+      new_torque = params.get("CarnivalDebugNewTorque", encoding="utf8") or "N/A"
+      apply_torque = params.get("CarnivalDebugApplyTorque", encoding="utf8") or "N/A"
+
+      # Display text overlay in top left corner
+      y_pos = self._content_rect.y + 20
+      x_pos = self._content_rect.x + 20
+      line_height = 25
+
+      debug_lines = [
+        f"Car: {car_name}",
+        f"CAN-FD: {canfd}",
+        f"STEER_MAX: {steer_max}",
+        f"SafetyParam: {safety_param}",
+        f"ActuatorTorque: {actuator_torque}",
+        f"NewTorque: {new_torque}",
+        f"ApplyTorque: {apply_torque}",
+      ]
+
+      # Draw background
+      bg_height = len(debug_lines) * line_height + 10
+      bg_rect = rl.Rectangle(x_pos - 5, y_pos - 5, 300, bg_height)
+      rl.draw_rectangle_rec(bg_rect, rl.Color(0, 0, 0, 180))
+
+      # Draw text lines
+      for i, line in enumerate(debug_lines):
+        rl.draw_text(line, int(x_pos), int(y_pos + i * line_height), 20, rl.WHITE)
+
+    except Exception as e:
+      # Fallback if something goes wrong - show error
+      rl.draw_text(f"Debug Error: {str(e)}", int(self._content_rect.x + 20), int(self._content_rect.y + 20), 20, rl.RED)
+
   def _render(self, rect):
     # Only render when system is started to avoid invalid data access
     if not ui_state.started:
@@ -96,6 +139,9 @@ class AugmentedRoadView(CameraView):
 
     # Custom UI extension point - add custom overlays here
     # Use self._content_rect for positioning within camera bounds
+
+    # Carnival Torque Debug Overlay
+    self._render_carnival_debug_overlay()
 
     # End clipping region
     rl.end_scissor_mode()
