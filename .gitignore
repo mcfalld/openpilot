@@ -109,3 +109,7 @@ Pipfile
 !.idea/customTargets.xml
 !.idea/tools/*
 !.run/*
+
+# Build scripts and backups
+build_and_deploy_panda.ps1
+opendbc_repo_BACKUP/
