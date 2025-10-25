@@ -144,8 +144,8 @@ static void hyundai_canfd_rx_hook(const CANPacket_t *to_push) {
 
 static bool hyundai_canfd_tx_hook(const CANPacket_t *to_send) {
   const TorqueSteeringLimits HYUNDAI_CANFD_STEERING_LIMITS = {
-    .max_torque = 320,
-    .max_rt_delta = 112,
+    .max_torque = 384,  // Increased from 320 to 384 for better steering capability (especially Carnival)
+    .max_rt_delta = 134,  // Scaled proportionally: 384 * (112/320) = 134
     .max_rate_up = 2,
     .max_rate_down = 3,
     .driver_torque_allowance = 250,
