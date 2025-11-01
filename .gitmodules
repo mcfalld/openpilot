@@ -1,9 +1,11 @@
 [submodule "panda"]
   path = panda
-  url = https://github.com/sunnyhaibin/panda.git
+  url = https://github.com/mcfalld/panda.git
+  branch = kia_carnival_384nm_panda
 [submodule "opendbc"]
   path = opendbc_repo
-  url = https://github.com/sunnypilot/opendbc.git
+  url = https://github.com/mcfalld/opendbc.git
+  branch = kia_carnival_384nm
 [submodule "msgq"]
   path = msgq_repo
   url = https://github.com/sunnypilot/msgq.git
@@ -19,6 +21,3 @@
 [submodule "sunnypilot/neural_network_data"]
   path = sunnypilot/neural_network_data
   url = https://github.com/sunnypilot/neural-network-data.git
-[submodule "opendbc_repo"]
-	url = https://github.com/mcfalld/opendbc.git
-	branch = kia_carnival_384nm
