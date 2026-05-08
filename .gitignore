@@ -113,3 +113,5 @@ Pipfile
 # Build scripts and backups
 build_and_deploy_panda.ps1
 opendbc_repo_BACKUP/
+
+DERRICK_PROJECT_REFERENCE.md
